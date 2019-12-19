@@ -20,13 +20,7 @@ package org.apache.spark.sql.jdbc
 import java.lang.String.join
 import java.sql.Connection
 import java.util.Collections.nCopies
-import java.util.{Collections, Properties}
-
-import org.apache.spark.sql.Column
-import org.apache.spark.sql.Row
-import org.apache.spark.sql.catalyst.expressions.Literal
-import org.apache.spark.sql.types.{ArrayType, DecimalType, FloatType, ShortType}
-import org.apache.spark.tags.DockerTest
+import java.util.Properties
 
 @DockerTest
 class PrestoIntegrationSuite extends DockerJDBCIntegrationSuite {
@@ -50,9 +44,11 @@ class PrestoIntegrationSuite extends DockerJDBCIntegrationSuite {
       "REAL '1.25' c_real, " +
       "42.42e0 c_double, " +
       "CAST('abc' AS varchar) c_varchar, " +
-      "ARRAY[BIGINT '42', BIGINT '53'] c_array").executeUpdate()
+      "ARRAY[BIGINT '42', BIGINT '53'] c_array")
+      .executeUpdate()
 
-    conn.prepareStatement("INSERT INTO bar VALUES (" + join(", ", nCopies(9, "NULL")) + ")").executeUpdate()
+    conn.prepareStatement("INSERT INTO bar VALUES (" + join(", ", nCopies(9, "NULL")) + ")")
+      .executeUpdate()
   }
 
   test("Type mapping for various types") {
