@@ -24,6 +24,7 @@ import java.util.Properties
 import org.apache.spark.tags.DockerTest
 
 @DockerTest
+@org.scalatest.Ignore
 class MsSqlServerIntegrationSuite extends DockerJDBCIntegrationSuite {
   override val db = new DatabaseOnDocker {
     override val imageName = "mcr.microsoft.com/mssql/server:2017-GA-ubuntu"

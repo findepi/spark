@@ -54,6 +54,7 @@ import org.apache.spark.tags.DockerTest
  * repository.
  */
 @DockerTest
+@org.scalatest.Ignore
 class OracleIntegrationSuite extends DockerJDBCIntegrationSuite with SharedSparkSession {
   import testImplicits._
 
