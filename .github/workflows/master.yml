@@ -10,6 +10,26 @@ on:
     - master
 
 jobs:
+
+  dock:
+    runs-on: ubuntu-latest
+    name: Dock
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '8'
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Yuppi
+        run: |
+          set -xeu
+          build/mvn package -DskipTests
+          cd external/docker-integration-tests
+          mvn test -Dsuites=org.apache.spark.sql.jdbc.PrestoIntegrationSuite
+
   build:
 
     runs-on: ubuntu-latest
@@ -70,7 +90,6 @@ jobs:
         echo "<settings><mirrors><mirror><id>google-maven-central</id><name>GCS Maven Central mirror</name><url>https://maven-central.storage-download.googleapis.com/repos/central/data/</url><mirrorOf>central</mirrorOf></mirror></mirrors></settings>" > ~/.m2/settings.xml
         ./build/mvn $MAVEN_CLI_OPTS -DskipTests -Pyarn -Pmesos -Pkubernetes -Phive -P${{ matrix.hive }} -Phive-thriftserver -P${{ matrix.hadoop }} -Phadoop-cloud -Djava.version=${{ matrix.java }} install
         rm -rf ~/.m2/repository/org/apache/spark
-
 
   lint:
     runs-on: ubuntu-latest
