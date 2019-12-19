@@ -925,6 +925,12 @@
         <scope>test</scope>
       </dependency>
       <dependency>
+        <groupId>io.prestosql</groupId>
+        <artifactId>presto-jdbc</artifactId>
+        <version>326</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
         <groupId>org.apache.curator</groupId>
         <artifactId>curator-recipes</artifactId>
         <version>${curator.version}</version>

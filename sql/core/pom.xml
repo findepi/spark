@@ -141,6 +141,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>io.prestosql</groupId>
+      <artifactId>presto-jdbc</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.apache.parquet</groupId>
       <artifactId>parquet-avro</artifactId>
       <scope>test</scope>

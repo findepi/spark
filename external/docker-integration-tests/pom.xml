@@ -124,6 +124,11 @@
       <artifactId>postgresql</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.prestosql</groupId>
+      <artifactId>presto-jdbc</artifactId>
+      <scope>test</scope>
+    </dependency>
     <!-- Oracle ojdbc jar, used for oracle  integration suite for docker testing.
      See https://github.com/apache/spark/pull/11306 for background on why we need
      to use a an ojdbc jar for the testcase. The maven dependency here is commented
